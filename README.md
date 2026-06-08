@@ -402,7 +402,7 @@ pregunta:
 `Compraste
 ${cantidad}
 manzanas a
-C${cordoba(precio)}
+${cordoba(precio)}
 cada una.
 ¿Cuánto pagaste?`,
 
@@ -424,7 +424,7 @@ pregunta:
 `Compraste
 ${cantidad}
 bananos a
-C${cordoba(precio)}
+${cordoba(precio)}
 cada uno.
 ¿Cuál es el total?`,
 
@@ -444,9 +444,9 @@ icono:"🍍",
 
 pregunta:
 `Tenías
-C${cordoba(precio*10)}
+${cordoba(precio*10)}
 y compraste una piña por
-C${cordoba(precio)}.
+${cordoba(precio)}.
 ¿Cuánto dinero queda?`,
 
 respuesta:
@@ -467,7 +467,7 @@ pregunta:
 `Hay
 ${cantidad*2}
 mangos y llegan
-C${precio}
+${precio}
 más.
 ¿Cuántos hay ahora?`,
 
@@ -487,9 +487,9 @@ icono:"🍊",
 
 pregunta:
 `Se reparten
-C${cordoba(cantidad*100)}
+${cordoba(cantidad*100)}
 entre
-C${cantidad}
+${cantidad}
 clientes.
 ¿Cuánto recibe cada uno?`,
 
@@ -511,7 +511,7 @@ pregunta:
 `Compraste
 ${cantidad}
 leches a
-C${cordoba(precio)}
+${cordoba(precio)}
 cada una.
 ¿Cuánto pagaste?`,
 
@@ -533,7 +533,7 @@ pregunta:
 `Compraste
 ${cantidad}
 quesos a
-C${cordoba(precio)}
+${cordoba(precio)}
 cada uno.
 ¿Cuál es el total?`,
 
@@ -649,7 +649,7 @@ html += `
 class="opcion"
 onclick="verificar(${valor})">
 
-C${cordoba(valor)}
+${cordoba(valor)}
 
 </button>
 
