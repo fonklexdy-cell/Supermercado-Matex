@@ -1,4 +1,3 @@
-
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -274,7 +273,8 @@ osc.stop(audioCtx.currentTime + 0.4);
 // UTILIDADES
 // =========================
 function cordoba(valor){
-return "C$ " + valor.toLocaleString('es-NI', { minimumFractionDigits: 0, maximumFractionDigits: 2 });
+// Formato específico para Nicaragua (C$) evitando confusiones con otros dólares
+return "C$ " + valor.toLocaleString('es-NI', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
 
 function aleatorio(min,max){
