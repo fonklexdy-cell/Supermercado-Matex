@@ -4,466 +4,161 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Supermercado MateKen2 Ultra</title>
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,sans-serif;
-}
-
-body{
-background:linear-gradient(135deg,#4caf50,#8bc34a);
-min-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-padding:15px;
-}
-
-.contenedor{
-background:white;
-width:100%;
-max-width:1000px;
-border-radius:25px;
-padding:20px;
-box-shadow:0 10px 30px rgba(0,0,0,.2);
-}
-
-h1{
-text-align:center;
-color:#2e7d32;
-margin-bottom:15px;
-}
-
-.avatar{
-font-size:85px;
-text-align:center;
-animation:flotar 2s infinite;
-}
-
-@keyframes flotar{
-50%{
-transform:translateY(-10px);
-}
-}
-
-.panel{
-display:flex;
-gap:10px;
-flex-wrap:wrap;
-margin-bottom:15px;
-}
-
-.caja{
-flex:1;
-min-width:120px;
-background:#e8f5e9;
-padding:12px;
-border-radius:15px;
-text-align:center;
-font-weight:bold;
-}
-
-.progreso{
-height:20px;
-background:#ddd;
-border-radius:20px;
-overflow:hidden;
-margin-bottom:15px;
-}
-
-.barra{
-height:100%;
-width:0%;
-background:#4caf50;
-transition:.5s;
-}
-
-.pregunta{
-background:#f1f8e9;
-padding:20px;
-border-radius:15px;
-font-size:22px;
-font-weight:bold;
-text-align:center;
-margin-bottom:15px;
-}
-
-.pista{
-background:#fff8e1;
-padding:10px;
-border-radius:10px;
-text-align:center;
-margin-bottom:15px;
-}
-
-.opcion{
-width:100%;
-padding:15px;
-border:none;
-border-radius:12px;
-margin-bottom:10px;
-font-size:18px;
-cursor:pointer;
-background:#c8e6c9;
-transition:.3s;
-}
-
-.opcion:hover{
-transform:scale(1.03);
-}
-
-.boton{
-width:100%;
-padding:15px;
-border:none;
-border-radius:15px;
-background:#2e7d32;
-color:white;
-font-size:18px;
-cursor:pointer;
-margin-top:10px;
-}
-
-.resultado{
-display:none;
-text-align:center;
-}
-
-.insignia{
-font-size:70px;
-margin:15px;
-}
-
-.detalles-resumen {
-text-align: left;
-max-width: 300px;
-margin: 20px auto;
-font-size: 18px;
-line-height: 1.8;
-}
-
-@media(max-width:768px){
-.avatar{
-font-size:60px;
-}
-.pregunta{
-font-size:18px;
-}
-}
+    *{ margin:0; padding:0; box-sizing:border-box; font-family:Arial,sans-serif; }
+    body{ background:linear-gradient(135deg,#4caf50,#8bc34a); min-height:100vh; display:flex; justify-content:center; align-items:center; padding:15px; }
+    .contenedor{ background:white; width:100%; max-width:1000px; border-radius:25px; padding:20px; box-shadow:0 10px 30px rgba(0,0,0,.2); }
+    h1{ text-align:center; color:#2e7d32; margin-bottom:15px; }
+    .avatar{ font-size:85px; text-align:center; animation:flotar 2s infinite; }
+    @keyframes flotar{ 50%{ transform:translateY(-10px); } }
+    .panel{ display:flex; gap:10px; flex-wrap:wrap; margin-bottom:15px; }
+    .caja{ flex:1; min-width:120px; background:#e8f5e9; padding:12px; border-radius:15px; text-align:center; font-weight:bold; }
+    .progreso{ height:20px; background:#ddd; border-radius:20px; overflow:hidden; margin-bottom:15px; }
+    .barra{ height:100%; width:0%; background:#4caf50; transition:.5s; }
+    .pregunta{ background:#f1f8e9; padding:20px; border-radius:15px; font-size:22px; font-weight:bold; text-align:center; margin-bottom:15px; }
+    .pista{ background:#fff8e1; padding:10px; border-radius:10px; text-align:center; margin-bottom:15px; }
+    .opcion{ width:100%; padding:15px; border:none; border-radius:12px; margin-bottom:10px; font-size:18px; cursor:pointer; background:#c8e6c9; transition:.3s; }
+    .opcion:hover{ transform:scale(1.03); background:#a5d6a7; }
+    .boton{ width:100%; padding:15px; border:none; border-radius:15px; background:#2e7d32; color:white; font-size:18px; cursor:pointer; margin-top:10px; }
+    .resultado{ display:none; text-align:center; }
+    .insignia{ font-size:70px; margin:15px; }
+    .detalles-resumen { text-align: left; max-width: 300px; margin: 20px auto; font-size: 18px; line-height: 1.8; }
 </style>
 </head>
 <body>
 
 <div class="contenedor">
-<h1>🛒 Supermercado MateKen2 Ultra</h1>
+    <h1>🛒 Supermercado MateKen2 Ultra</h1>
+    <div id="inicio">
+        <div class="avatar">🤖</div>
+        <button class="boton" onclick="iniciarAudio(); iniciarJuego();">▶ Empezar Juego</button>
+    </div>
 
-<div id="inicio">
-<div class="avatar">
-🤖
-</div>
-<button class="boton" onclick="iniciarAudio(); iniciarJuego();">
-▶ Empezar Juego
-</button>
-</div>
+    <div id="juego" style="display:none;">
+        <div class="panel">
+            <div class="caja">⭐ Puntos<br><span id="puntos">0</span></div>
+            <div class="caja">📋 Pregunta<br><span id="numero">1</span>/10</div>
+            <div class="caja">⏱ Tiempo<br><span id="tiempo">0</span>s</div>
+        </div>
+        <div class="progreso"><div class="barra" id="barra"></div></div>
+        <div class="avatar" id="avatar">🤖</div>
+        <div class="pista" id="pista"></div>
+        <div class="pregunta" id="pregunta"></div>
+        <div id="opciones"></div>
+        <button class="boton" onclick="reiniciar()">🔄 Reiniciar</button>
+    </div>
 
-<div id="juego" style="display:none;">
-<div class="panel">
-<div class="caja">
-⭐ Puntos
-<br>
-<span id="puntos">0</span>
-</div>
-<div class="caja">
-📋 Pregunta
-<br>
-<span id="numero">1</span>/10
-</div>
-<div class="caja">
-⏱ Tiempo
-<br>
-<span id="tiempo">0</span>s
-</div>
-</div>
-
-<div class="progreso">
-<div class="barra" id="barra"></div>
-</div>
-
-<div class="avatar" id="avatar">
-🤖
+    <div id="resultado" class="resultado">
+        <h2>🎉 Excelente Trabajo 🎉</h2>
+        <div id="insignia" class="insignia"></div>
+        <h1 id="rango" style="font-size: 50px; margin: 10px 0; color: #333;"></h1>
+        <h1 id="porcentaje" style="color: #2e7d32; font-size: 40px; margin-bottom: 15px;"></h1>
+        <div class="detalles-resumen">
+            <div>✔️ Correctas: <span id="res-correctas"></span></div>
+            <div>❌ Incorrectas: <span id="res-incorrectas"></span></div>
+            <div>⏱️ Tiempo: <span id="res-tiempo"></span> segundos</div>
+        </div>
+        <button class="boton" onclick="reiniciar()">🔄 Jugar Nuevamente</button>
+    </div>
 </div>
 
-<div class="pista" id="pista"></div>
-<div class="pregunta" id="pregunta"></div>
-<div id="opciones"></div>
-
-<button class="boton" onclick="reiniciar()">
-🔄 Reiniciar
-</button>
-</div>
-
-<div id="resultado" class="resultado">
-<h2>🎉 Excelente Trabajo 🎉</h2>
-<div id="insignia" class="insignia"></div>
-<h1 id="rango" style="font-size: 50px; margin: 10px 0; color: #333;"></h1>
-<h1 id="porcentaje" style="color: #2e7d32; font-size: 40px; margin-bottom: 15px;"></h1>
-
-<div class="detalles-resumen">
-<div>✔️ Correctas: <span id="res-correctas"></span></div>
-<div>❌ Incorrectas: <span id="res-incorrectas"></span></div>
-<div>⏱️ Tiempo: <span id="res-tiempo"></span> segundos</div>
-<div>🛒 Nivel: Supermercado PRO Ultra</div>
-</div>
-
-<button class="boton" onclick="reiniciar()">
-🔄 Jugar Nuevamente
-</button>
-</div>
-</div>
 <script>
-let preguntas=[];
-let indice=0;
-let aciertos=0;
-let segundos=0;
-let cronometro;
-let audioCtx;
+    let preguntas=[], indice=0, aciertos=0, segundos=0, cronometro, audioCtx;
 
-function iniciarAudio(){
-if(!audioCtx){
-audioCtx = new(window.AudioContext || window.webkitAudioContext)();
-}
-if(audioCtx.state==="suspended"){
-audioCtx.resume();
-}
-}
+    // Función de formato estricta para Córdoba Nicaragüense (C$)
+    function cordoba(valor) {
+        return "C$ " + Math.floor(valor); 
+    }
 
-// =========================
-// SONIDOS
-// =========================
-function sonidoCorrecto(){
-iniciarAudio();
-const osc = audioCtx.createOscillator();
-const gain = audioCtx.createGain();
-osc.type = "sine";
-osc.frequency.setValueAtTime(850, audioCtx.currentTime);
-osc.connect(gain);
-gain.connect(audioCtx.destination);
-gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
-gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.3);
-osc.start();
-osc.stop(audioCtx.currentTime + 0.3);
-}
+    function iniciarAudio(){
+        if(!audioCtx) audioCtx = new(window.AudioContext || window.webkitAudioContext)();
+        if(audioCtx.state==="suspended") audioCtx.resume();
+    }
 
-function sonidoError(){
-iniciarAudio();
-const osc = audioCtx.createOscillator();
-const gain = audioCtx.createGain();
-osc.type = "square";
-osc.frequency.setValueAtTime(220, audioCtx.currentTime);
-osc.connect(gain);
-gain.connect(audioCtx.destination);
-gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
-gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.4);
-osc.start();
-osc.stop(audioCtx.currentTime + 0.4);
-}
+    function sonidoCorrecto(){
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.frequency.setValueAtTime(850, audioCtx.currentTime);
+        osc.connect(gain); gain.connect(audioCtx.destination);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.3);
+        osc.start(); osc.stop(audioCtx.currentTime + 0.3);
+    }
 
-// =========================
-// UTILIDADES
-// =========================
-function cordoba(valor){
-// Formato específico para Nicaragua (C$) evitando confusiones con otros dólares
-return "C$ " + valor.toLocaleString('es-NI', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-}
+    function sonidoError(){
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = "square";
+        osc.frequency.setValueAtTime(220, audioCtx.currentTime);
+        osc.connect(gain); gain.connect(audioCtx.destination);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.4);
+        osc.start(); osc.stop(audioCtx.currentTime + 0.4);
+    }
 
-function aleatorio(min,max){
-return Math.floor(Math.random() * (max-min+1))+min;
-}
+    function aleatorio(min,max){ return Math.floor(Math.random() * (max-min+1))+min; }
+    function mezclar(array){ return array.sort(()=>Math.random()-0.5); }
 
-function mezclar(array){
-return array.sort(()=>Math.random()-0.5);
-}
+    function generarPreguntas(){
+        let banco=[];
+        for(let i=0;i<50;i++){
+            let c = aleatorio(2,10);
+            let p = aleatorio(10,100);
+            banco.push({icono:"🍎", pregunta: `Compraste ${c} manzanas a ${cordoba(p)} cada una. ¿Cuánto pagaste?`, respuesta: c * p, pista: "Multiplica cantidad por precio"});
+            banco.push({icono:"🍌", pregunta: `Compraste ${c} bananos a ${cordoba(p)} cada uno. ¿Cuál es el total?`, respuesta: c * p, pista: "Multiplica cantidad por precio"});
+            banco.push({icono:"🧀", pregunta: `El queso cuesta ${cordoba(p)}. Si pagas con ${cordoba(p*2)}, ¿cuánto es tu vuelto?`, respuesta: p, pista: "Resta el precio al pago"});
+        }
+        return mezclar(banco).slice(0,10);
+    }
 
-// =========================
-// BANCO DE PREGUNTAS
-// =========================
-function generarPreguntas(){
-let banco=[];
-for(let i=0;i<150;i++){
-let cantidad = aleatorio(2,12);
-let precio = aleatorio(10,150);
+    function iniciarJuego(){
+        document.getElementById("inicio").style.display="none";
+        document.getElementById("resultado").style.display="none";
+        document.getElementById("juego").style.display="block";
+        preguntas = generarPreguntas();
+        indice = 0; aciertos = 0; segundos = 0;
+        cronometro = setInterval(()=>{ segundos++; document.getElementById("tiempo").innerText = segundos; },1000);
+        mostrarPregunta();
+    }
 
-// 🍎 MANZANAS
-banco.push({
-icono:"🍎",
-pregunta: `Compraste ${cantidad} manzanas a ${cordoba(precio)} cada una. ¿Cuánto pagaste?`,
-respuesta: cantidad * precio,
-pista: "Multiplica cantidad × precio"
-});
+    function mostrarPregunta(){
+        let p = preguntas[indice];
+        document.getElementById("numero").innerText = indice + 1;
+        document.getElementById("pregunta").innerHTML = `${p.icono} ${p.pregunta}`;
+        document.getElementById("pista").innerHTML = "💡 " + p.pista;
+        document.getElementById("barra").style.width = (indice * 10) + "%";
 
-// 🍌 BANANOS
-banco.push({
-icono:"🍌",
-pregunta: `Compraste ${cantidad} bananos a ${cordoba(precio)} cada uno. ¿Cuál es el total?`,
-respuesta: cantidad * precio,
-pista: "Multiplicación"
-});
+        let opts = [p.respuesta, p.respuesta+20, p.respuesta-10, p.respuesta+50];
+        opts = mezclar([...new Set(opts)]);
 
-// 🍍 PIÑAS
-banco.push({
-icono:"🍍",
-pregunta: `Tenías ${cordoba(precio*10)} y compraste una piña por ${cordoba(precio)}. ¿Cuánto dinero queda?`,
-respuesta: (precio*10)-precio,
-pista: "Resta"
-});
+        let html = "";
+        opts.forEach(v => { html += `<button class="opcion" onclick="verificar(${v})">${cordoba(v)}</button>`; });
+        document.getElementById("opciones").innerHTML = html;
+    }
 
-// 🥭 MANGOS
-banco.push({
-icono:"🥭",
-pregunta: `Hay ${cantidad*2} mangos y llegan ${precio} más. ¿Cuántos hay ahora?`,
-respuesta: (cantidad*2)+precio,
-pista: "Suma"
-});
+    function verificar(valor){
+        if(valor === preguntas[indice].respuesta){
+            aciertos++; sonidoCorrecto(); document.getElementById("avatar").innerText = "🤖🎉";
+        } else { sonidoError(); document.getElementById("avatar").innerText = "🤖😕"; }
+        
+        document.querySelectorAll(".opcion").forEach(b => b.disabled = true);
+        setTimeout(()=>{
+            document.getElementById("avatar").innerText = "🤖";
+            indice++;
+            if(indice >= 10) finalizar(); else mostrarPregunta();
+        }, 1000);
+    }
 
-// 🍊 NARANJAS
-banco.push({
-icono:"🍊",
-pregunta: `Se reparten ${cordoba(cantidad*100)} entre ${cantidad} clientes. ¿Cuánto recibe cada uno?`,
-respuesta: 100,
-pista: "División"
-});
+    function finalizar(){
+        clearInterval(cronometro);
+        document.getElementById("juego").style.display="none";
+        document.getElementById("resultado").style.display="block";
+        document.getElementById("porcentaje").innerText = (aciertos * 10) + "%";
+        document.getElementById("res-correctas").innerText = aciertos;
+        document.getElementById("res-incorrectas").innerText = 10 - aciertos;
+        document.getElementById("res-tiempo").innerText = segundos;
+        document.getElementById("rango").innerText = aciertos >= 8 ? "Experto" : "Aprendiz";
+        document.getElementById("insignia").innerText = aciertos >= 8 ? "🥇" : "🥉";
+    }
 
-// 🥛 LECHE
-banco.push({
-icono:"🥛",
-pregunta: `Compraste ${cantidad} leches a ${cordoba(precio)} cada una. ¿Cuánto pagaste?`,
-respuesta: cantidad * precio,
-pista: "Multiplicación"
-});
-
-// 🧀 QUESO
-banco.push({
-icono:"🧀",
-pregunta: `Compraste ${cantidad} quesos a ${cordoba(precio)} cada uno. ¿Cuál es el total?`,
-respuesta: cantidad * precio,
-pista: "Multiplica"
-});
-}
-return mezclar(banco).slice(0,10);
-}
-
-// =========================
-// INICIAR JUEGO
-// =========================
-function iniciarJuego(){
-document.getElementById("inicio").style.display="none";
-document.getElementById("resultado").style.display="none";
-document.getElementById("juego").style.display="block";
-preguntas = generarPreguntas();
-indice = 0;
-aciertos = 0;
-segundos = 0;
-document.getElementById("puntos").innerText = aciertos;
-document.getElementById("tiempo").innerText = segundos;
-
-clearInterval(cronometro);
-cronometro = setInterval(()=>{
-segundos++;
-document.getElementById("tiempo").innerText = segundos;
-},1000);
-mostrarPregunta();
-}
-
-// =========================
-// MOSTRAR PREGUNTA
-// =========================
-function mostrarPregunta(){
-let p = preguntas[indice];
-document.getElementById("numero").innerText = indice + 1;
-document.getElementById("pregunta").innerHTML = `${p.icono} ${p.pregunta}`;
-document.getElementById("pista").innerHTML = "💡 " + p.pista;
-document.getElementById("barra").style.width = (indice * 10) + "%";
-
-let opciones = [
-p.respuesta,
-p.respuesta + aleatorio(10,40),
-Math.max(1, p.respuesta - aleatorio(5,25)),
-p.respuesta + aleatorio(41,80)
-];
-opciones = mezclar([...new Set(opciones)]);
-
-let html = "";
-opciones.forEach(valor=>{
-html += `<button class="opcion" onclick="verificar(${valor})">${cordoba(valor)}</button>`;
-});
-document.getElementById("opciones").innerHTML = html;
-}
-
-// =========================
-// VERIFICAR RESPUESTA
-// =========================
-function verificar(valor){
-let correcta = preguntas[indice].respuesta;
-if(valor === correcta){
-aciertos++;
-sonidoCorrecto();
-document.getElementById("avatar").innerText = "🤖🎉";
-document.getElementById("puntos").innerText = aciertos * 10;
-}else{
-sonidoError();
-document.getElementById("avatar").innerText = "🤖😕";
-}
-
-let botones = document.querySelectorAll(".opcion");
-botones.forEach(b => b.disabled = true);
-
-setTimeout(()=>{
-document.getElementById("avatar").innerText = "🤖";
-indice++;
-if(indice >= 10){
-finalizar();
-}else{
-mostrarPregunta();
-}
-},1000);
-}
-
-// =========================
-// FINALIZAR JUEGO
-// =========================
-function finalizar(){
-clearInterval(cronometro);
-document.getElementById("juego").style.display="none";
-document.getElementById("resultado").style.display="block";
-
-let porcentaje = (aciertos / 10) * 100;
-document.getElementById("porcentaje").innerText = `${porcentaje}%`;
-document.getElementById("res-correctas").innerText = aciertos;
-document.getElementById("res-incorrectas").innerText = 10 - aciertos;
-document.getElementById("res-tiempo").innerText = segundos;
-
-let rango = "Aprendiz";
-let insignia = "🥉";
-
-if(porcentaje >= 90) {
-rango = "Experto";
-insignia = "🥇";
-} else if(porcentaje >= 70) {
-rango = "Avanzado";
-insignia = "🥈";
-}
-
-document.getElementById("rango").innerText = rango;
-document.getElementById("insignia").innerText = insignia;
-}
-
-function reiniciar(){
-clearInterval(cronometro);
-document.getElementById("juego").style.display="none";
-document.getElementById("resultado").style.display="none";
-document.getElementById("inicio").style.display="block";
-}
+    function reiniciar(){ location.reload(); }
 </script>
 </body>
 </html>
