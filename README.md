@@ -22,6 +22,29 @@
     .resultado{ display:none; text-align:center; }
     .insignia{ font-size:70px; margin:15px; }
     .detalles-resumen { text-align: left; max-width: 300px; margin: 20px auto; font-size: 18px; line-height: 1.8; }
+    .btn-flotante-mateken {
+    position: fixed;
+    bottom: 25px;
+    left: 25px; /* Cambiado a la izquierda */
+    background-color: #FFD166;
+    color: #073B4C;
+    padding: 15px 22px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 50px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: transform 0.2s, background-color 0.2s;
+    z-index: 9999;
+    font-family: sans-serif;
+}
+.btn-flotante-mateken:hover {
+    transform: scale(1.1);
+    background-color: #fffde7;
+}
 </style>
 </head>
 <body>
@@ -160,5 +183,9 @@
 
     function reiniciar(){ location.reload(); }
 </script>
+<a href="
+https://mateken2.pages.dev/" target="_blank" class="btn-flotante-mateken">
+    🤖 Ir a MateKen2
+</a>
 </body>
 </html>
